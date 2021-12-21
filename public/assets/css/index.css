@@ -1,0 +1,79 @@
+html {
+    min-height: 100%;
+    position: relative;
+}
+body{
+    background-color: rgb(238, 238, 238);
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+.dropdown-toggle::after {
+    display:none;
+}
+
+.submenu{
+    background-color: #fff;
+}
+
+.categoria-menu{
+    border-left: 2px solid rgb(192, 192, 192);
+}
+
+.categoria-menu span{
+    font-size: 20px;
+}
+
+.nav-link{
+    font-weight: bold;
+    margin-top: -10px;
+}
+
+.estadisticas-hoy{
+    border-right: 2px solid rgb(192, 192, 192);
+}
+
+footer{
+    background-color: #00ba8b;
+    position: absolute;
+    padding-top: 10px;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    color: #fff;
+}
+
+.atajo{
+    height: 75px;
+    border-radius: 5%;
+    color: #010101;
+    background-color: rgb(247, 244, 244);
+}
+
+.atajo:hover{
+    background-color: #00ba8b;
+    color: #fff;
+}
+
+.atajo span{
+    font-size: 24px;
+}
+@media screen and (max-width: 1200px) {
+    .categoria-menu{
+        border-left: none;
+    }
+
+    footer{
+        padding-right: 15px;
+        padding-left: 15px;
+
+    }
+
+    .copyright p{
+        font-size: 12px;
+    }
+
+    .empresa p{
+        font-size: 12px;
+    }
+}
