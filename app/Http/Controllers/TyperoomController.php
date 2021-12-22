@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Typeroom;
 use App\Http\Requests\StoreTyperoomRequest;
 use App\Http\Requests\UpdateTyperoomRequest;
+use Illuminate\Http\Request;
 
 class TyperoomController extends Controller
 {
@@ -15,7 +16,9 @@ class TyperoomController extends Controller
      */
     public function index()
     {
-        return view('tipohabitaciones.index');
+        $tipos = Typeroom::all();
+
+        return view('tipohabitaciones.index', compact('tipos'));
     }
 
     /**
@@ -25,7 +28,7 @@ class TyperoomController extends Controller
      */
     public function create()
     {
-        //
+        return view('tipohabitaciones.create');
     }
 
     /**
@@ -34,9 +37,17 @@ class TyperoomController extends Controller
      * @param  \App\Http\Requests\StoreTyperoomRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreTyperoomRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'tipo_h' => 'required',
+            'precio_h' => 'required',
+            'detalles_h' => 'required'
+        ]);
+
+        Typeroom::create($request->all());
+
+        return redirect()->route('tipohabitacion')->with('info', 'Se agrego el tipo de habitacion correctamente');
     }
 
     /**

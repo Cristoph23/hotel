@@ -21,7 +21,8 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="categoria-menu text-center">
-                                                <span>42</span>
+                                                <span>{{$habitaciones_o->count()}}</span>
+                                                
                                                 <a class="nav-link" href="#">Habitaciones Ocupadas</a>
                                             </div>
                                         </div>

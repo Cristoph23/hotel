@@ -13,7 +13,7 @@
                     <a class="nav-link dropdown-toggle" href="#" id="navbarSubmenu2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empleados</a>
                     <div class="dropdown-menu" aria-labelledby="navbarSubmenu2">
                         <a class="dropdown-item" href="{{ route('usuarios') }}">Empleados</a>
-                        <a class="dropdown-item" href="#">Permisos</a>
+                        <a class="dropdown-item" href="#">Editar Roles</a>
                     </div>
                 </div>
             </div>

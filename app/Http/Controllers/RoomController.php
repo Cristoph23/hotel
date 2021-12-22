@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Room;
 use App\Http\Requests\StoreRoomRequest;
 use App\Http\Requests\UpdateRoomRequest;
+use App\Models\Typeroom;
+use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
@@ -15,7 +17,8 @@ class RoomController extends Controller
      */
     public function index()
     {
-        return view('habitaciones.index');
+        $habitaciones = Room::all();
+        return view('habitaciones.index', compact('habitaciones'));
     }
 
     /**
@@ -25,7 +28,8 @@ class RoomController extends Controller
      */
     public function create()
     {
-        //
+        $tipohabitaciones = Typeroom::pluck('tipo_h', 'id');
+        return view('habitaciones.create', compact('tipohabitaciones'));
     }
 
     /**
@@ -34,9 +38,20 @@ class RoomController extends Controller
      * @param  \App\Http\Requests\StoreRoomRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRoomRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'typeroom_id' => 'required',
+            'capacidad' => 'required',
+        ]);
+
+        Room::create([
+            'typeroom_id' => $request->typeroom_id,
+            'capacidad' => $request->capacidad,
+            'status_r' => 'Desocupado',
+        ]);
+
+        return redirect()->route('habitacion')->with('info', 'Se agrego la habitacion correctamente');
     }
 
     /**

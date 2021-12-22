@@ -21,6 +21,8 @@
 
     @yield('content')
     
+    <br>
+    
     @include('plantillas.footer')
     
     @yield('js')
