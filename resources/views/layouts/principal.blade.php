@@ -12,7 +12,11 @@
 </head>
 <body>
     @include('plantillas.navbar')
-    @include('plantillas.submenu')
+    @if (Auth::guest())
+        
+    @else
+        @include('plantillas.submenu')
+    @endif
     <br>
 
     @yield('content')
