@@ -17,4 +17,8 @@ class Room extends Model
     public function typeroom(){
         return $this->belongsTo(Typeroom::class);
     }
+
+    public function reservas(){
+        return $this->hasMany(Reserva::class);
+    }
 }

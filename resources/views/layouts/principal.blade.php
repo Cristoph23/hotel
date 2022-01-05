@@ -27,6 +27,10 @@
     @yield('content')
     
     <br>
+    <br>
+    <br>
+    <br>
+
     
     @include('plantillas.footer')
     

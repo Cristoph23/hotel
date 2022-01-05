@@ -76,6 +76,8 @@
                     <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
                     <button type="button" class="btn btn-warning" id="btnModificar">Modificar</button>
                     <button type="button" class="btn btn-danger" id="btnEliminar">Eliminar</button>
+                    <a class="btn btn-primary text-white" id="btnPagar">Pagar</a>
+
 
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
@@ -116,12 +118,14 @@
             eventClick:function(info){
                 var evento = info.event;
                 console.log(evento);
-                axios.post(baseUrl+"/evento/editar/"+info.event.id).
+                axios.post(baseUrl+"/reserva/editar/"+info.event.id).
                 then(
                 (respuesta) =>{
                     formulario.id.value = respuesta.data.id;
                     formulario.title.value = respuesta.data.title;
-                    formulario.descripcion.value = respuesta.data.descripcion;
+                    formulario.nombre.value = respuesta.data.nombre;
+                    formulario.dias.value = respuesta.data.dias;
+
 
                     formulario.start.value = respuesta.data.start;
                     formulario.end.value = respuesta.data.end;
@@ -150,6 +154,10 @@
 
         document.getElementById("btnModificar").addEventListener("click", function(){
             enviarDatos("/reserva/actualizar/"+formulario.id.value);
+        });
+
+        document.getElementById("btnPagar").addEventListener("click", function(){
+            window.location.href = baseUrl+'/reserva/pagar/'+formulario.id.value;
         });
 
         function enviarDatos(url) {
@@ -196,6 +204,9 @@
 
 
         }
+
+       
+        
 
     </script>
 @endsection

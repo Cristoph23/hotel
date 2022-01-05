@@ -26,11 +26,12 @@
                   <i class="fa fa-user" aria-hidden="true"></i> {{auth()->user()->name}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <a class="dropdown-item" href="{{ route('configuraciones') }}"><i class="fa fa-cog" aria-hidden="true"></i> Configuraciones</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">
-                   <i class="fa fa-power-off" aria-hidden="true"></i> Cerrar Sesion
-               </a>
+                  <i class="fa fa-power-off" aria-hidden="true"></i> Cerrar Sesion
+                  </a>
 
                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                    @csrf

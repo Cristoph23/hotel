@@ -20,10 +20,13 @@ class CreateReservasTable extends Migration
             $table->unsignedBigInteger('room_id');
 
             $table->dateTime("start");
-            $table->dateTime("end");
+            $table->dateTime("end", );
 
             $table->decimal("total",8,2)->nullable();
             $table->integer("dias");
+            $table->text("tipo_pago")->nullable();
+            
+            $table->string("status_pago")->default("No pagado");
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->timestamps();
         });

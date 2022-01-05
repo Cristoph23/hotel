@@ -36,12 +36,15 @@ body{
 footer{
     background-color: #00ba8b;
     position: absolute;
-    padding-top: 10px;
+    padding-top: 3%;
     bottom: 0;
     width: 100%;
-    height: 50px;
+    height: 110px;
     color: #fff;
+    border-radius: 15% 15% 0 0 / 50%;
 }
+
+
 
 .atajo{
     height: 75px;
@@ -58,6 +61,21 @@ footer{
 .atajo span{
     font-size: 24px;
 }
+
+#dform{
+    display: none;
+}
+
+.titulocof{
+    font-weight: bold;
+}
+
+.subtitulo{
+    font-size: 15px;
+    color: #888888;
+}
+
+
 @media screen and (max-width: 1200px) {
     .categoria-menu{
         border-left: none;
@@ -66,6 +84,9 @@ footer{
     footer{
         padding-right: 15px;
         padding-left: 15px;
+        border-radius: 0;
+        height: 50px;
+
 
     }
 
@@ -75,5 +96,16 @@ footer{
 
     .empresa p{
         font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .titulocof{
+        font-size: 17px;
+    }
+    
+    .subtitulo{
+        font-size: 12px;
+        color: #888888;
     }
 }

@@ -25,6 +25,11 @@ class Reserva extends Model
         'dias',
         'total',
         'start',
+        'status_pago',
         'end'
     ];
+
+    public function room(){
+        return $this->belongsTo(Room::class);
+    }
 }

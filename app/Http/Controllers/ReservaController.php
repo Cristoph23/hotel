@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Reserva;
 use App\Http\Requests\StoreReservaRequest;
 use App\Http\Requests\UpdateReservaRequest;
+use App\Models\Pago;
 use App\Models\Room;
-use App\Models\Typeroom;
+use PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReservaController extends Controller
@@ -44,19 +46,78 @@ class ReservaController extends Controller
     }
 
    
-    public function edit(Reserva $reserva)
+    public function edit($id)
     {
-        //
+        $reserva = Reserva::find($id);
+
+        $reserva->start = Carbon::createFromFormat('Y-m-d H:i:s', $reserva->start)->format('Y-m-d');
+        $reserva->end = Carbon::createFromFormat('Y-m-d H:i:s', $reserva->end)->format('Y-m-d');
+        
+        return response()->json($reserva);
     }
 
   
-    public function update(UpdateReservaRequest $request, Reserva $reserva)
+    public function update(Request $request, Reserva $reserva)
     {
-        //
+        $request->validate(Reserva::$rules);
+        $reserva->update($request->all());
+        return response()->json($reserva);
     }
 
-    public function destroy(Reserva $reserva)
+    public function destroy($id)
     {
-        //
+        $reserva = Reserva::find($id)->delete();
+        return response()->json($reserva);
     }
+
+    public function pagar(Reserva $reserva)
+    {
+        return view('reservas.pagar', compact('reserva'));
+    }
+
+    public function pagado(Request $request, Reserva $reserva)
+    {
+        $room = Room::find($reserva->room_id);
+
+        $reserva->total = $request->total;
+        $reserva->status_pago = "Pagado";
+        $reserva->tipo_pago = $request->tipo_pago;
+
+        $reserva->save();
+
+        $room->update([
+            'status_r' => 'Ocupado'
+        ]);
+
+        Pago::create([
+            'referencia' => 'Pago de habitacion',
+            'pago' => $request->total,
+            'fecha_pago' => Carbon::now()
+        ]);
+        
+        $data = [
+            'id' => $reserva->id,
+            'nombre' => $reserva->nombre,
+            'start' => $reserva->start,
+            'end' => $reserva->end,
+            'room_id' => $reserva->room_id,
+            'total' => $reserva->total,
+            'dias' => $reserva->dias,
+            'price' => $reserva->room->typeroom->precio_h,
+
+            'tipo' => $reserva->room->typeroom->tipo_h,
+
+        ];
+    
+        return \PDF::loadView('reservas', $data)->stream('reserva.pdf');
+        
+    }
+
+    public function lista()
+    {
+        $reservas = Reserva::all();
+
+        return view('reservas.lista', compact('reservas'));
+    }
+       
 }
