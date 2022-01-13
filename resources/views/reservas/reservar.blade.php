@@ -167,7 +167,7 @@
             then(
             (respuesta) =>{
                 calendar.refetchEvents();
-                $("#modelId").modal("hide");
+                $("#modelId2").modal("hide");
             }
             ).catch(
             error=>{

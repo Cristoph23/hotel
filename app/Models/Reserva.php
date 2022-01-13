@@ -32,4 +32,14 @@ class Reserva extends Model
     public function room(){
         return $this->belongsTo(Room::class);
     }
+
+    public function orderproducts()
+    {
+        return $this->hasMany(Orderproduct::class);
+    }
+
+    public function reservaservices()
+    {
+        return $this->hasMany(Reservaservice::class);
+    }
 }

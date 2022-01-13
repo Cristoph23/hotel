@@ -16,6 +16,8 @@
                     <div class="dropdown-menu" aria-labelledby="navbarSubmenu2">
                         <a class="dropdown-item" href="{{ route('usuarios') }}">Empleados</a>
                         <a class="dropdown-item" href="#">Editar Roles</a>
+                        <a class="dropdown-item" href="{{ route('provider') }}">Provedores</a>
+
                     </div>
                 </div>
             </div>
@@ -52,9 +54,19 @@
             @can('home')
             <div class="col">
                 <div class="categoria-menu text-center">
-                    <span><i class="fa fa-file" aria-hidden="true"></i></span>
-                    <a class="nav-link" href="#">Departamentos</a>
+                    <span><i class="fa fa-hotel" aria-hidden="true"></i></span>
+                    <a class="nav-link dropdown-toggle" href="#" id="submenuservicio" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Servicios</a>
+                    <div class="dropdown-menu" aria-labelledby="submenuservicio">
+                        
+                        <a class="dropdown-item" href="{{ route('servicio') }}">Agregar servicio</a>
+                        <a class="dropdown-item" href="{{ route('servicio.buscar') }}">Reservar servicio</a>
+                        <a class="dropdown-item" href="{{ route('servicio') }}">Cobrar servicio</a>
+
+
+    
+                    </div>
                 </div>
+                
             </div>
             @endcan
 
@@ -70,8 +82,15 @@
             @can('home')
             <div class="col">
                 <div class="categoria-menu text-center">
-                    <span><i class="fa fa-building-o" aria-hidden="true"></i></span>
-                    <a class="nav-link" href="#">Instalaciones</a>
+                    <span><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
+                    <a class="nav-link dropdown-toggle" href="#" id="submenuprod" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
+                    <div class="dropdown-menu" aria-labelledby="submenuprod">
+                        
+                        <a class="dropdown-item" href="{{ route('orderproduct') }}">Crear pedido</a>
+                        <a class="dropdown-item" href="{{ route('product') }}">Agregar productos</a>
+                        <a class="dropdown-item" href="{{ route('product.stock') }}">Alerta Stock</a>
+
+                    </div>
                 </div>
             </div>
             @endcan

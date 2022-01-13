@@ -3,15 +3,7 @@
 @section('content')
     <br>
     <div class="container">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Princiapl</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">IVA</a>
-            </li>
-            
-          </ul>
+        @include('plantillas.navconf')
         <br>
         <div class="row">
             <div class="col-md-6">
