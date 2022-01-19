@@ -15,9 +15,11 @@ class CreateTyperoomsTable extends Migration
     {
         Schema::create('typerooms', function (Blueprint $table) {
             $table->id();
-            $table->text('tipo_h');
-            $table->decimal('precio_h', 9, 2);
-            $table->longText('detalles_h')->nullable();
+            $table->text('type_room');
+            $table->decimal('price_adult', 9, 2);
+            $table->decimal('price_kid', 9, 2);
+
+            $table->longText('details_room')->nullable();
             $table->timestamps();
         });
     }

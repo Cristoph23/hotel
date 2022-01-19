@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Shop;
 use Illuminate\Database\Seeder;
 
 class ShopSeeder extends Seeder
@@ -13,6 +14,12 @@ class ShopSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Shop::create([
+            'name_shop' => 'Salon de belleza 1'
+        ]);
+
+        Shop::create([
+            'name_shop' => 'Salon de belleza 2'
+        ]);
     }
 }

@@ -14,10 +14,13 @@
         @endif
         
             <div class="card">
-                <div class="card-header">
+                <div class="card-header bg-dark text-white">
                 <i class="fa fa-home" aria-hidden="true"></i> Recamara Suit <b>H-{{$room->id}}</b>
                 </div>
                 <div class="card-body">
+                        <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success my-2"><i
+                                class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+                        {{-- <button class="btn btn-primary my-2"><i class="fa fa-file" aria-hidden="true"></i> Exportar Excel</button>         --}}
                     <div id="agenda">
                     </div>
                 </div>
@@ -66,6 +69,16 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="descripcion">Adultos</label>
+                            <input type="text" class="form-control" name="adults" id="adults" placeholder="Ingresa los adultos a ingresar">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Niños</label>
+                            <input type="text" class="form-control" name="kids" id="kids" placeholder="Ingresa los niños a ingresar">
+                        </div>
+
+                        <div class="form-group d-none">
                             <label for="">Dias en hospedaje</label>
                             <input type="number" class="form-control" name="dias" id="dias" step="0.001">
                         </div>
@@ -84,6 +97,79 @@
                 </div>
                 </div>
             </div>
+    </div>
+
+    <!-- Modal Crear -->
+    <div class="modal fade bd-example-modal-xl" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Crear Reserva</h5>
+
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route' => 'habitacion.store', 'autocomplete' => 'off']) !!}
+                    <div class="form-row">
+                    <div class="form-group col-md-12">
+
+                        <label>Cliente:</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Ingresar usuario" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fa fa-user-plus" aria-hidden="true"></i></button>
+                            </div>
+                        </div>
+                          
+
+                        {{-- {!! Form::select('typeroom_id', $tipohabitaciones, null, ['class' => 'form-control']) !!} --}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Fecha entrada:</label>
+                        <input type="datetime-local" class="form-control">
+                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Fecha salida:</label>
+                        <input type="datetime-local" class="form-control">
+                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Adultos:</label>
+                        <input type="number" class="form-control">
+                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Niños:</label>
+                        <input type="number" class="form-control">
+                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Dias:</label>
+                        <input type="number" class="form-control">
+                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>SubTotal:</label>
+                        <input type="number" readonly class="form-control">
+                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
+                    </div>
+                </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>
+                        Guardar</button>
+
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"
+                            aria-hidden="true"></i> Cerrar</button>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -125,6 +211,8 @@
                     formulario.title.value = respuesta.data.title;
                     formulario.nombre.value = respuesta.data.nombre;
                     formulario.dias.value = respuesta.data.dias;
+                    formulario.kids.value = respuesta.data.kids;
+                    formulario.adults.value = respuesta.data.adults;
 
 
                     formulario.start.value = respuesta.data.start;
@@ -167,7 +255,7 @@
             then(
             (respuesta) =>{
                 calendar.refetchEvents();
-                $("#modelId2").modal("hide");
+                $("#modelId").modal("hide");
             }
             ).catch(
             error=>{

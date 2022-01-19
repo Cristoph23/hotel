@@ -10,6 +10,12 @@
             <div class="card-body">
                 <form action="{{ route('servicio.store') }}" method="POST">
                     @csrf
+                    
+                    <div class="form-group">
+                        <label>Tienda:</label>
+                        {!! Form::select('shop_id', $shops, null, ['class' => 'form-control']) !!}
+                    </div>
+
                     <div class="form-group">
                         <label>Nombre del servicio:</label>
                         {!! Form::text('name_service', null, ['class' => 'form-control', 'placeholder' => 'Ingresa el nombre']) !!}

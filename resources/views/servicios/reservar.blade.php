@@ -12,10 +12,61 @@
                 <strong>{{ session('info') }}</strong>
             </div>
         @endif
+        
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-2" style="height: 200px;">
+                    <div class="row g-0">
+                        <div class="col-md-4 mt-3">
+                            <img src="/assets/img/user.png" class="w-100" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title"><b>Informacion del cliente</b></h5>
+
+                                <ul>
+                                    <li>
+                                        <p class="card-text">Nombre: {{ $reserva->nombre }}</p>
+                                    </li>
+                                    <li>
+                                        <p class="card-text">Habitacion: H-{{ $reserva->room->id }}</p>
+                                    </li>
+                                </ul>
+
+                                <p class="card-text"><small class="text-muted">Llego:
+                                        {{ date('d-m-Y', strtotime($reserva->start)) }}</small></p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-2" style="height: 200px;">
+
+                    <div class="card-body">
+                        <div class="chart">
+                            <div class="chartjs-size-monitor">
+                                <div class="chartjs-size-monitor-expand">
+                                    <div class=""></div>
+                                </div>
+                                <div class="chartjs-size-monitor-shrink">
+                                    <div class=""></div>
+                                </div>
+                            </div>
+                            <!-- Sales Chart Canvas -->
+                            <canvas id="myChart" height="225" style="height: 180px; display: block; width: 591px;"
+                                width="738" class="chartjs-render-monitor"></canvas>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="card">
             <div class="card-header">
-                <i class="fa fa-home" aria-hidden="true"></i> Recamara Suit <b>H-</b>
+                <i class="fa fa-shopping-bag" aria-hidden="true"></i> <b>{{$shop->name_shop}}</b>
             </div>
             <div class="card-body">
                 <div id="agenda">
@@ -60,8 +111,7 @@
 
                             <div class="form-group">
                                 <label>Servicios</label>
-                                {!! Form::select('services_id', $services, null, ['class' => 'form-control']) !!}
-
+                                {!! Form::select('service_id', $misservicios, null, ['class' => 'form-control']) !!}
                             </div>
 
 
@@ -69,7 +119,6 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-success" id="btnGuardar">Guardar</button>
-
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -105,7 +154,7 @@
 
                             <div class="form-group">
                                 <label>Servicios</label>
-                                {!! Form::select('services_id', $services, null, ['class' => 'form-control']) !!}
+                                {!! Form::select('service_id', $misservicios, null, ['class' => 'form-control']) !!}
 
                             </div>
 
@@ -127,6 +176,7 @@
 
 @section('js')
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             let formulario = document.querySelector("#formularioEventos");
@@ -164,7 +214,7 @@
                             formulario2.id.value = respuesta.data.id;
                             formulario2.title.value = respuesta.data.title;
                             formulario2.reserva_id.value = respuesta.data.reserva_id;
-                            formulario2.services_id.value = respuesta.data.services_id;
+                            formulario2.service_id.value = respuesta.data.service_id;
 
 
                             $("#modelId2").modal("show");
@@ -228,6 +278,43 @@
                 )
             }
 
+        });
+    </script>
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'],
+                datasets: [{
+                    label: 'Compras por dia',
+                    data: [12, 19, 3, 5, 2, 3, 10],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
     </script>
 

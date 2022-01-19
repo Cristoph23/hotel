@@ -2,103 +2,84 @@
 
 @section('content')
     <div class="container">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Status</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Selecciona el Status...</option>
+                            <option value="Ocupado">Ocupado</option>
+                            <option value="Desocupado">Desocupado</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="mr-sm-2" for="inlineFormCustomSelect">Categoria</label>
+                        <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <option selected>Selecciona la categoria...</option>
+                            @foreach ($typerooms as $typeroom)
+                                <option value="{{$typeroom->id}}">{{$typeroom->type_room}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="row">
-            
-                <div class="col-sm-6 mt-2">
-                    <div class="card">
-                        <div class="card-header">
-                        <i class="fa fa-home" aria-hidden="true"></i> Recamara Suit
-                        </div>
-                        <div class="card-body">
-                            @foreach ($recamara_suit as $rs)
-                                @if ($rs->status_r == "Desocupado")
-                                    <a href="{{ route('reserva.create', $rs) }}" class="btn btn-success btn-sm"><i class="fa fa-home" aria-hidden="true"></i> H-{{$rs->id}}</a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+            @foreach ($rooms as $room)
 
-                <div class="col-sm-6 mt-2">
-                    <div class="card">
-                        <div class="card-header">
-                        <i class="fa fa-home" aria-hidden="true"></i> Recamara Individual
-                        </div>
-                        <div class="card-body">
-                            @foreach ($recamara_individual as $ri)
-                                @if ($ri->status_r == "Desocupado")
-                                    <a href="{{ route('reserva.create', $ri) }}" class="btn btn-success btn-sm"><i class="fa fa-home" aria-hidden="true"></i> H-{{$ri->id}}</a>
-                                @endif
-                            @endforeach
+                @if ($room->status_r == 'Ocupado')
+                    <div class="col-md-3">
+                        <div class="wrimagecard wrimagecard-topimage">
+                            <a href="{{ route('reserva.create', $room) }}">
+                                <div class="wrimagecard-topimage_header" style="background-color: rgba(22, 160, 133, 0.1)">
+                                    <center><i class="fa fa-bed" style="color:#16A085"></i></center>
+                                </div>
+                                <div class="wrimagecard-topimage_title">
+                                    <h5><b>H-{{ $room->id }}</b></h5>
+                                    <h6>{{ $room->typeroom->type_room }}</h6>
+                                </div>
+                            </a>
+                            <a href="">
+                                <div class="card-footer text-center text-white" style="background-color: rgb(55, 206, 148)">
+                                    <b>Mas Informacion</b>
+                                    <i class="fa fa-arrow-circle-right" style="font-size: 15px"></i>
+                                </div>
+                            </a>
                         </div>
                     </div>
-                </div>
+                @else
+                    @if ($room->status_r == 'Desocupado')
+                        <div class="col-md-3">
+                            <div class="wrimagecard wrimagecard-topimage">
+                                <a href="{{ route('reserva.create', $room) }}">
+                                    <div class="wrimagecard-topimage_header"
+                                        style="background-color: rgba(160, 22, 22, 0.1)">
+                                        <center><i class="fa fa-bed" style="color:#ffc4c4 "></i></center>
+                                    </div>
+                                    <div class="wrimagecard-topimage_title">
+                                        <h5><b>H-{{ $room->id }}</b></h5>
+                                        <h6>{{ $room->typeroom->type_room }}</h6>
+                                    </div>
+                                </a>
+                                <a href="">
+                                    <div class="card-footer text-center text-white"
+                                        style="background-color: rgb(212, 71, 71)">
+                                        <b>Mas Informacion</b>
+                                        <i class="fa fa-arrow-circle-right" style="font-size: 15px"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    @endif
+                @endif
 
-                <div class="col-sm-6 mt-2">
-                    <div class="card">
-                        <div class="card-header">
-                        <i class="fa fa-home" aria-hidden="true"></i> Recamara Matrimonial
-                        </div>
-                        <div class="card-body">
-                            @foreach ($recamara_matrimonial as $rm)
-                                @if ($rm->status_r == "Desocupado")
-                                    <a href="{{ route('reserva.create', $rm) }}" class="btn btn-success btn-sm"><i class="fa fa-home" ama-hidden="true"></i> H-{{$rm->id}}</a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 mt-2">
-                    <div class="card">
-                        <div class="card-header">
-                        <i class="fa fa-home" aria-hidden="true"></i> Recamara VIP
-                        </div>
-                        <div class="card-body">
-                            @foreach ($recamara_VIP as $rv)
-                                @if ($rv->status_r == "Desocupado")
-                                    <a href="{{ route('reserva.create', $rv) }}" class="btn btn-success btn-sm"><i class="fa fa-home" aria-hidden="true"></i> H-{{$rv->id}}</a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 mt-2">
-                    <div class="card">
-                        <div class="card-header">
-                        <i class="fa fa-home" aria-hidden="true"></i> Recamara Prime
-                        </div>
-                        <div class="card-body">
-                            @foreach ($recamara_individual as $rp)
-                                @if ($rp->status_r == "Desocupado")
-                                    <a href="{{ route('reserva.create', $rp) }}" class="btn btn-success btn-sm"><i class="fa fa-home" aria-hidden="true"></i> H-{{$rp->id}}</a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-6 mt-2">
-                    <div class="card">
-                        <div class="card-header">
-                        <i class="fa fa-home" aria-hidden="true"></i> Recamara Mega Suid
-                        </div>
-                        <div class="card-body">
-                            @foreach ($recamara_mega as $rm)
-                                @if ($rm->status_r == "Desocupado")
-                                    <a href="{{ route('reserva.create', $rm) }}" class="btn btn-success btn-sm"><i class="fa fa-home" aria-hidden="true"></i> H-{{$rm->id}}</a>
-                                @endif
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
+            @endforeach
 
         </div>
-        
     </div>
 @endsection
 
 @section('js')
-   
+
 @endsection

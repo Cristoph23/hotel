@@ -17,13 +17,19 @@
             <div class="card-body">
                 {!! Form::open(['route' => 'servicio.buscador', 'method' => 'GET', 'autocomplete' => 'off']) !!}
 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="buscar" placeholder="Ingresa el folio" aria-label="Ingresa el folio" aria-describedby="button-addon2">
-                    <div class="input-group-append">
-                        <button class="btn btn-info" type="submit" id="button-addon2">Buscar</button>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Folio reserva</label>
+                        <input type="text" class="form-control" name="buscar" placeholder="Ingresa el folio">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Tienda</label>
+                        {!! Form::select('shop', $shops, 'null', ['class' => 'form-control']) !!}
                     </div>
                 </div>
 
+                {!! Form::submit('Buscar', ['class' => 'btn btn-primary btn-block']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

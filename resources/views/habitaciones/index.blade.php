@@ -8,54 +8,131 @@
 
 @section('content')
     <div class="container">
-        @if (session('info'))
-            <div class="alert alert-success">
-                <strong>{{session('info')}}</strong>
-            </div>
-        @endif
         <div class="card">
-            <div class="card-header">
-              <i class="fa fa-home" aria-hidden="true"></i> Habitaciones
+
+            <div class="card-header bg-dark text-white">
+                <i class="fa fa-home" aria-hidden="true"></i> Habitaciones
             </div>
+
             <div class="card-body">
-                <table id="tabla" class="table table-striped table-bordered dt-responsive nowrap">
+                <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success my-2"><i
+                        class="fa fa-plus" aria-hidden="true"></i> Nuevo</button>
+                <button class="btn btn-primary my-2"><i class="fa fa-file" aria-hidden="true"></i> Exportar Excel</button>
+
+            </div>
+
+            <div class="card-body">
+                <table id="tabla" class="table table-striped dt-responsive nowrap">
                     <thead class="thead-dark">
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Tipo de habitacion</th>
-                        <th scope="col">Capacidad</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Opciones</th>
-                      </tr>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Tipo de habitacion</th>
+                            <th scope="col">Capacidad</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Opciones</th>
+                        </tr>
                     </thead>
                     <tbody>
                         @foreach ($habitaciones as $room)
-                            <tr>
-                                <td>{{$room->id}}</td>
-                                <td>{{$room->typeroom->tipo_h}}</td>
-                                <td>{{$room->capacidad}}</td>
-                                @if ($room->status_r == "Desocupado")
-                                    <td class="text-success">{{$room->status_r}}</td>                              
-                                @endif
+                        @if ($room->status_r == 'Desocupado')
+                            <tr style="background: #acd4a9; color: #495057">
+                                <td>H-{{ $room->id }}</td>
+                                <td>{{ $room->typeroom->type_room }}</td>
+                                <td>{{ $room->capacidad }}</td>
+                                <td>
+                                    {{-- <div style="text-align: center; font-size: 13px; font-weight: bold; vertical-align: middle; width: 70%; height: 25px; background: #4caf50; color: #fff">{{$room->status_r}}</div> --}}
+                                    
+                                    @if ($room->status_r == 'Desocupado')
+                                    <button class="btn btn-success btn-sm"
+                                        style="cursor: text;">{{ $room->status_r }}</button>
+                                    @endif
+                                    @if ($room->status_r == 'Ocupado')
+                                    <button class="btn btn-danger btn-sm"
+                                    style="cursor: text;">{{ $room->status_r }}</button>
+                                    @endif
+                        </td>
+                        <td width="10px">
+                            <a href="#" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a href="#" class="btn btn-warning"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                @if ($room->status_r == "Ocupado")
-                                    <td class="text-danger">{{$room->status_r}}</td>                              
-                                @endif
-                                <td width="10px">
-                                    <a href="#" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                    <a href="#" class="btn btn-warning"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <form action="{{ route('habitacion.destroy', $room) }}" class="formulario-eliminar" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger mt-1"><i class="fa fa-window-close-o"
+                                            aria-hidden="true"></i></button>
+                            </form>
+                        </td>
+                        </tr>
+                        @endif
+                        @if ($room->status_r == 'Ocupado')
+                            <tr style="background: #ffc4c4; color: #495057">
+                                <td>H-{{ $room->id }}</td>
+                                <td>{{ $room->typeroom->type_room }}</td>
+                                <td>{{ $room->capacidad }}</td>
+                                <td>
+                                    {{-- <div style="text-align: center; font-size: 13px; font-weight: bold; vertical-align: middle; width: 70%; height: 25px; background: #4caf50; color: #fff">{{$room->status_r}}</div> --}}
+                                    
+                                    @if ($room->status_r == 'Desocupado')
+                                    <button class="btn btn-success btn-sm"
+                                        style="cursor: text;">{{ $room->status_r }}</button>
+                                    @endif
+                                    @if ($room->status_r == 'Ocupado')
+                                    <button class="btn btn-danger btn-sm"
+                                    style="cursor: text;">{{ $room->status_r }}</button>
+                                    @endif
+                        </td>
+                        <td width="10px">
+                            <a href="#" class="btn btn-success"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <a href="#" class="btn btn-warning"><i class="fa fa-eye" aria-hidden="true"></i></a>
 
-                                    <form action="">
-                                        <button type="submit" class="btn btn-danger mt-1"><i class="fa fa-window-close-o" aria-hidden="true"></i></button>
-                                    </form>
-                                </td>
-                            </tr>    
+                            <form action="{{ route('habitacion.destroy', $room) }}" class="formulario-eliminar" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger mt-1"><i class="fa fa-window-close-o"
+                                        aria-hidden="true"></i></button>
+                            </form>
+
+                        </td>
+                        </tr>
+                        @endif
                         @endforeach
-                        
-                    </tbody>
-                  </table>
 
-                <a href="{{ route('habitacion.create') }}" class="btn btn-primary btn-block my-3">Agregar Habitacion</a>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Crear -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">Agregar Tipo de Habitacion</h5>
+
+                </div>
+                <div class="modal-body">
+                    {!! Form::open(['route' => 'habitacion.store', 'autocomplete' => 'off']) !!}
+
+                    <div class="form-group">
+                        <label>Tipo de Habitacion:</label>
+                        {!! Form::select('typeroom_id', $tipohabitaciones, null, ['class' => 'form-control']) !!}
+                    </div>
+                    <div class="form-group">
+                        <label>Capacidad:</label>
+                        {!! Form::number('capacidad', null, ['class' => 'form-control']) !!}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i>
+                        Guardar</button>
+
+                    {!! Form::close() !!}
+                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times"
+                            aria-hidden="true"></i> Cerrar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -67,23 +144,65 @@
     <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap4.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $('#tabla').DataTable({
             responsive: true,
             autoWidth: false,
 
             "language": {
-            "lengthMenu": "Mostrar _MENU_ registros",
-            "zeroRecords": "No hay registros",
-            "info": "Mostrando pagina _PAGE_ of _PAGES_",
-            "infoEmpty": "No records available",
-            "infoFiltered": "(filtrado de _MAX_ total registros totales)",
-            'search': 'Buscar:',
-            'paginate': {
-                'next': 'Siguiente',
-                'previous': 'Anterior'
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No hay registros",
+                "info": "Mostrando pagina _PAGE_ de _PAGES_ de _TOTAL_ registros.",
+                "infoEmpty": "No hay registros",
+                "infoFiltered": "(filtrado de _MAX_ total registros totales)",
+                'search': 'Buscar:',
+                'paginate': {
+                    'next': 'Siguiente',
+                    'previous': 'Anterior'
+                }
             }
-        }
         });
     </script>
+    @if (session('info'))
+        <script>
+            Swal.fire({
+                // position: 'top-end',
+                icon: 'success',
+                title: 'Guardado',
+                text: 'Se guardo correctamente el registro!!!',
+                showConfirmButton: true,
+            })
+        </script>
+    @endif
+    <script>
+        $('.formulario-eliminar').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estas seguro de eliminarlo?',
+                text: "Se eliminara permanentemente el registro!!!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Si, eliminar!',
+                cancelButtonText: 'Cancelar'
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
+    </script>
+
+    @if (session('del'))
+        <script>
+            Swal.fire(
+                'Eliminado!!!',
+                'Se elimino correctamente el registro.',
+                'success'
+            )
+        </script>
+    @endif
 @endsection

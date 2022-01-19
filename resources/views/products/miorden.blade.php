@@ -169,8 +169,8 @@
 
                             <div class="row">
                                 <div class="center-block">
-                                    <form class="inline-block" action="{{ route('orderproduct.cancelar') }}"
-                                        method="POST">
+                                    <form class="inline-block formulario-cancelar"
+                                        action="{{ route('orderproduct.cancelar') }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <input type="hidden" name="orden" value="{{ $orderproduct->id }}">
@@ -272,7 +272,8 @@
                             <li class="list-group-item"><b>Total: </b>${{ $suma }}</li>
                         </ul>
                     </div>
-                    <input type="hidden" name="total_suma" id="total_suma" value="{{ $suma }}" step="0.001" oninput="calcular()">
+                    <input type="hidden" name="total_suma" id="total_suma" value="{{ $suma }}" step="0.001"
+                        oninput="calcular()">
                     <label for="">Recibo:</label>
                     <input type="text" class="form-control" name="recibo" id="recibo"
                         placeholder="Ingresa el dinero recibido" step="0.001" oninput="calcular()">
@@ -290,6 +291,8 @@
 
 @section('js')
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <script>
         const ctx = document.getElementById('myChart').getContext('2d');
         const myChart = new Chart(ctx, {
@@ -336,5 +339,26 @@
             document.getElementById("cambio").value = a - b;
 
         }
+    </script>
+
+    <script>
+        $('.formulario-cancelar').submit(function(e) {
+            e.preventDefault();
+            Swal.fire({
+                title: '¿Estas seguro de cancelar?',
+                text: "¡Se eliminara permanentemente la compra!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '¡Si, eliminar!',
+                cancelButtonText: 'Cancelar'
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+        });
     </script>
 @endsection

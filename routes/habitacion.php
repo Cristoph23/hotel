@@ -13,3 +13,6 @@ Route::get('/habitacion/edit/{room}', [RoomController::class, 'edit'])->name('ha
 
 Route::put('/habitacion/update/{room}', [RoomController::class, 'update'])->name('habitacion.update');
 
+Route::delete('/habitacion/destroy/{room}', [RoomController::class, 'destroy'])->name('habitacion.destroy');
+
+

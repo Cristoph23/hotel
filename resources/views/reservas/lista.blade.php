@@ -8,14 +8,23 @@
 
 @section('content')
     <div class="container">
-        @if (session('info'))
-            <div class="alert alert-success">
-                <strong>{{session('info')}}</strong>
-            </div>
-        @endif
         <div class="card">
-            <div class="card-header">
+            <div class="card-header bg-dark text-white">
               <i class="fa fa-home" aria-hidden="true"></i> Reservas
+            </div>
+            <div class="card-body">
+                <button data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-success my-2"><i class="fa fa-print" aria-hidden="true"></i> Imprimir</button>
+                <button class="btn btn-primary my-2"><i class="fa fa-file" aria-hidden="true"></i> Exportar Excel</button>
+                <div class="btn-group dropright">
+                    <button type="button" class="btn btn-warning my-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-archive" aria-hidden="true"></i> Crear Reporte
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Reporte de hoy</a>
+                        <a class="dropdown-item" href="#">Reporte semanal</a>
+                        <a class="dropdown-item" href="#">Reporte personalizado</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <table id="tabla" class="table table-striped table-bordered dt-responsive nowrap">
@@ -27,8 +36,6 @@
                         <th scope="col">Fecha inicio</th>
                         <th scope="col">Fecha salida</th>
                         <th scope="col">Estado pago</th>
-
-
 
                       </tr>
                     </thead>
@@ -67,8 +74,8 @@
             "language": {
             "lengthMenu": "Mostrar _MENU_ registros",
             "zeroRecords": "No hay registros",
-            "info": "Mostrando pagina _PAGE_ of _PAGES_",
-            "infoEmpty": "No records available",
+            "info": "Mostrando pagina _PAGE_ de _PAGES_ de _TOTAL_ registros.",
+            "infoEmpty": "No hay registros",
             "infoFiltered": "(filtrado de _MAX_ total registros totales)",
             'search': 'Buscar:',
             'paginate': {

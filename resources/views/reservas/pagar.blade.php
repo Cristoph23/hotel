@@ -13,7 +13,9 @@
                     <li class="list-group-item">Fecha salida: {{date('d-m-Y', strtotime($reserva->end))}}</li>
                     <li class="list-group-item">Dias de Hospedaje: {{$reserva->dias}}</li>
                     <li class="list-group-item">Numero de Habitacion: H-{{$reserva->room->id}}</li>
-                    <li class="list-group-item">Precio por dia de Habitacion: {{$reserva->room->typeroom->precio_h}}</li>
+                    <li class="list-group-item">Adultos: {{$reserva->adults}}</li>
+                    <li class="list-group-item">Niños: {{$reserva->kids}}</li>
+
 
 
                   </ul>
@@ -33,8 +35,20 @@
                             <input type="text" class="form-control" id="a" name="a" value="{{$reserva->dias}}">
                         </div>
                         <div class="form-group d-none">
-                            <input type="text" class="form-control" id="b" name="b" value="{{$reserva->room->typeroom->precio_h}}">
+                            <input type="text" class="form-control" id="b" name="b" value="{{$reserva->room->typeroom->price_adult}}">
                         </div>
+
+                        <div class="form-group d-none">
+                            <input type="text" class="form-control" id="c" name="c" value="{{$reserva->room->typeroom->price_kid}}">
+                        </div>
+
+                        <div class="form-group d-none">
+                            <input type="text" class="form-control" id="niños" name="niños" value="{{$reserva->kids}}">
+                        </div>
+                        <div class="form-group d-none">
+                            <input type="text" class="form-control" id="adultos" name="adultos" value="{{$reserva->adults}}">
+                        </div>
+    
     
                         <div class="form-group">
                             <label for="">Costo total de habitacion:</label>
@@ -83,9 +97,12 @@
             }
 
             var a = parseFloat(document.getElementById("a").value) || 0,
+            c = parseFloat(document.getElementById("c").value) || 0,
+            niños = parseFloat(document.getElementById("niños").value) || 0,
+            adultos = parseFloat(document.getElementById("adultos").value) || 0,
             b = parseFloat(document.getElementById("b").value) || 0;
         
-            document.getElementById("total").value = a * b;
+            document.getElementById("total").value = (a * b * adultos) + (a * c * niños);
         }
     </script>
 @endsection

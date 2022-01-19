@@ -27,6 +27,8 @@ class CreateReservasTable extends Migration
             $table->text("tipo_pago")->nullable();
             
             $table->string("status_pago")->default("No pagado");
+            $table->integer('kids');
+            $table->integer('adults');
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->timestamps();
         });

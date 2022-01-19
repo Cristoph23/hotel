@@ -61,8 +61,7 @@
                         <a class="dropdown-item" href="{{ route('servicio') }}">Agregar servicio</a>
                         <a class="dropdown-item" href="{{ route('servicio.buscar') }}">Reservar servicio</a>
                         <a class="dropdown-item" href="{{ route('servicio') }}">Cobrar servicio</a>
-
-
+                        <a class="dropdown-item" href="{{ route('shop') }}">Agregar tienda</a>
     
                     </div>
                 </div>

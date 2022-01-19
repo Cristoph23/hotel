@@ -21,6 +21,8 @@ Route::post('/reserva/borrar/{id}', [ReservaController::class, 'destroy'])->name
 
 Route::get('/reserva/pagar/{reserva}', [ReservaController::class, 'pagar'])->name('reserva.pagar');
 
+Route::get('/reserva/agregarreserva', [ReservaController::class, 'agregarreserva'])->name('reserva.agregarreserva');
+
 Route::put('/reserva/pagado/{reserva}', [ReservaController::class, 'pagado'])->name('reserva.pagado');
 
 

@@ -17,7 +17,7 @@ class ReservaserviceController extends Controller
         $reserva = Reservaservice::create([
             'title' => $request->title,
             'reserva_id' => $request->reserva_id,
-            'services_id' => $request->services_id,
+            'service_id' => $request->service_id,
             'start' => $request->start,
             'end' => $request->start
         ]);  
@@ -48,5 +48,20 @@ class ReservaserviceController extends Controller
     public function pagar(Reservaservice $reservaservice)
     {
         return view('servicios.pagar', compact('reservaservice'));
+    }
+
+    public function pagado(Request $request, Reservaservice $reservaservice)
+    {
+        $reservaservice->update([
+            'total' => $request->total
+        ]);
+        return redirect()->route('servicio.buscar')->with('info', 'El pago fue hecho correctamente');
+    }
+
+    public function cancelar(Reservaservice $reservaservice)
+    {
+        $reservaservice->delete();
+        return redirect()->route('servicio.buscar')->with('info', 'Se cancelo la compra');
+
     }
 }

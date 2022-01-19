@@ -25,6 +25,7 @@
                     <thead class="thead-dark">
                       <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Tienda</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
 
@@ -35,6 +36,7 @@
                         @foreach ($services as $service)
                             <tr>
                                 <td>{{$service->id}}</td>
+                                <td>{{$service->shop->name_shop}}</td>
                                 <td>{{$service->name_service}}</td>
                                 <td>${{$service->price_service}}</td>
 

@@ -15,7 +15,9 @@ class Reserva extends Model
         'room_id' => 'required',
         'dias' => 'required',
         'start' => 'required',
-        'end' => 'required'
+        'end' => 'required',
+        'kids' => 'required',
+        'adults' => 'required'
     ];
 
     protected $fillable = [
@@ -26,7 +28,9 @@ class Reserva extends Model
         'total',
         'start',
         'status_pago',
-        'end'
+        'end',
+        'kids',
+        'adults'
     ];
 
     public function room(){

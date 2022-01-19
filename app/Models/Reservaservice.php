@@ -12,27 +12,33 @@ class Reservaservice extends Model
     static $rules=[
         'title' => 'required',
         'reserva_id' => 'required',
-        'services_id' => 'required',
+        'service_id' => 'required',
         'start' => 'required',
     ];
 
     protected $fillable = [
         'title',
         'reserva_id',
-        'services_id',
+        'service_id',
+        'total',
         'start',
-        'end'
+        'end',
+        'shop_id'
     ];
 
     public function reserva()
     {
-        $this->belongsTo(Reserva::class);
+        return $this->belongsTo(Reserva::class);
     }
 
     public function service()
     {
-        $this->belongsTo(Service::class);
+        return $this->belongsTo(Service::class);
     }
 
+    public function shop()
+    {
+        return $this->belongsTo(Shop::class);
+    }
    
 }

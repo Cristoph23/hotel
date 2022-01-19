@@ -15,43 +15,49 @@ class TyperoomSeeder extends Seeder
     public function run()
     {
         Typeroom::create([
-            'tipo_h' => 'Recamara Suit',
-            'precio_h' => '3200',
-            'detalles_h' => 'Cama matrimonial, dos baños, vista al mar, blacon'
+            'type_room' => 'Recamara Suit',
+            'price_adult' => '3200',
+            'price_kid' => '1900',
+            'details_room' => 'Cama matrimonial, dos baños, vista al mar, blacon'
         ]);
 
         Typeroom::create([
-            'tipo_h' => 'Recamara Inidividual',
-            'precio_h' => '1000',
-            'detalles_h' => 'Cama inidividual, cocina, baño'
-        ]);
-
-        
-        Typeroom::create([
-            'tipo_h' => 'Recamara Matrimonial',
-            'precio_h' => '1400',
-            'detalles_h' => 'Cama matrimonial, cocina, baño'
+            'type_room' => 'Recamara Inidividual',
+            'price_adult' => '1000',
+            'price_kid' => '900',
+            'details_room' => 'Cama inidividual, cocina, baño'
         ]);
 
         
         Typeroom::create([
-            'tipo_h' => 'Recamara VIP',
-            'precio_h' => '2000',
-            'detalles_h' => 'Cama matrimonail, cocina, baño, bar, balcon'
+            'type_room' => 'Recamara Matrimonial',
+            'price_adult' => '1400',
+            'price_kid' => '1000',
+            'details_room' => 'Cama matrimonial, cocina, baño'
         ]);
 
         
         Typeroom::create([
-            'tipo_h' => 'Recamara Prime',
-            'precio_h' => '2500',
-            'detalles_h' => '2 camas matrimoniales, cocina, baño, balcon'
+            'type_room' => 'Recamara VIP',
+            'price_adult' => '2000',
+            'price_kid' => '1500',
+            'details_room' => 'Cama matrimonail, cocina, baño, bar, balcon'
         ]);
 
         
         Typeroom::create([
-            'tipo_h' => 'Recamara Mega Suid',
-            'precio_h' => '1000',
-            'detalles_h' => '2 camas matrimoniales, cocina, sala, comedor, baño, balcon, vista al mar'
+            'type_room' => 'Recamara Prime',
+            'price_adult' => '2500',
+            'price_kid' => '2000',
+            'details_room' => '2 camas matrimoniales, cocina, baño, balcon'
+        ]);
+
+        
+        Typeroom::create([
+            'type_room' => 'Recamara Mega Suid',
+            'price_adult' => '3500',
+            'price_kid' => '3000',
+            'details_room' => '2 camas matrimoniales, cocina, sala, comedor, baño, balcon, vista al mar'
         ]);
 
     }

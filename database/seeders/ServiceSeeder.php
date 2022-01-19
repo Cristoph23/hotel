@@ -16,12 +16,15 @@ class ServiceSeeder extends Seeder
     {
         Service::create([
             'name_service' => 'Colocacion de uñas',
-            'price_service' => 85
+            'price_service' => 85,
+            'shop_id' => 1
         ]);
 
         Service::create([
             'name_service' => 'Corte de cabello',
-            'price_service' => 70
+            'price_service' => 70,
+            'shop_id' => 2
+
         ]);
     }
 }

@@ -10,9 +10,10 @@ class Typeroom extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tipo_h',
-        'precio_h',
-        'detalles_h'
+        'type_room',
+        'price_adult',
+        'price_kid',
+        'details_room'
     ];
 
     public function rooms(){
