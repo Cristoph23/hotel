@@ -177,7 +177,7 @@
                                         <button type="submit" class="btn btn-danger">Cancelar Compra</button>
                                     </form>
                                 </div>
-                                <div class="center-block mx-2"> <button href="{{ route('orderproduct.cobrar') }}"
+                                <div class="center-block mx-2"> <button
                                         class="btn btn-success inline-block" data-toggle="modal"
                                         data-target=".bd-example-modal-lg">Continuar a Cobrar</button>
                                 </div>
@@ -272,18 +272,22 @@
                             <li class="list-group-item"><b>Total: </b>${{ $suma }}</li>
                         </ul>
                     </div>
-                    <input type="hidden" name="total_suma" id="total_suma" value="{{ $suma }}" step="0.001"
-                        oninput="calcular()">
-                    <label for="">Recibo:</label>
-                    <input type="text" class="form-control" name="recibo" id="recibo"
-                        placeholder="Ingresa el dinero recibido" step="0.001" oninput="calcular()">
+                    {!! Form::model($orderproduct, ['route' => ['orderproduct.cobrar', $orderproduct], 'method' => 'PUT']) !!}
+                    {!! Form::model($orderproductdetail, ['route' => ['orderproduct.editarcantidad', $orderproductdetail], 'method' => 'PUT']) !!}
 
-                    <label for="">Cambio:</label>
-                    <input readonly class="form-control" name="cambio" id="cambio" step="0.001">
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-success btn-block">Cobrar</button>
-                </div>
+                        <input type="hidden" name="total_suma" id="total_suma" value="{{ $suma }}" step="0.001"
+                            oninput="calcular()">
+                        <label for="">Recibo:</label>
+                        <input type="text" class="form-control" name="recibo" id="recibo"
+                            placeholder="Ingresa el dinero recibido" step="0.001" oninput="calcular()">
+
+                        <label for="">Cambio:</label>
+                        <input readonly class="form-control" name="cambio" id="cambio" step="0.001">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success btn-block">Cobrar</button>
+                        </div>
+                    {!! Form::close() !!}
             </div>
         </div>
     </div>

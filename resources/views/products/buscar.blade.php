@@ -33,13 +33,24 @@
 
 @section('js')
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if (session('info'))
+    @if (session('del'))
         <script>
             Swal.fire(
                 '¡Cancelado!',
                 'Se cancelo correctamente la compra.',
                 'success'
             )
+        </script>
+    @endif
+    @if (session('info'))
+        <script>
+            Swal.fire({
+                // position: 'top-end',
+                icon: 'success',
+                title: 'Vendido',
+                text: 'La orden se cobro exitosamente!!!',
+                showConfirmButton: true,
+            })
         </script>
     @endif
 

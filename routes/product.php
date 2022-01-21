@@ -12,7 +12,7 @@ Route::post('/product/store', [ProductController::class, 'store'])->name('produc
 Route::get('/orderproduct', [OrderproductController::class, 'index'])->name('orderproduct');
 Route::get('/orderproduct/buscar', [OrderproductController::class, 'buscar'])->name('orderproduct.buscar');
 Route::get('/orderproduct/buscador', [OrderproductController::class, 'buscador'])->name('orderproduct.buscador');
-Route::get('/orderproduct/cobrar', [OrderproductController::class, 'cobrar'])->name('orderproduct.cobrar');
+Route::put('/orderproduct/cobrar/{orderproduct}', [OrderproductController::class, 'cobrar'])->name('orderproduct.cobrar');
 Route::post('/orderproduct/micarrito', [OrderproductController::class, 'agregarproduct'])->name('orderproduct.agregarproduct');
 Route::get('/orderproduct/miorden/{reserva}/{orderproduct}', [OrderproductController::class, 'myorder'])->name('orderproduct.myorder');
 Route::put('/orderproduct/editarcantidad/{orderproductdetail}', [OrderproductController::class, 'editarcantidad'])->name('orderproduct.editarcantidad');

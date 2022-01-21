@@ -12,7 +12,11 @@
                 <strong>{{session('info')}}</strong>
             </div>
         @endif
-        
+            <div class="card mb-3">
+                <div class="card-body">
+
+                </div>
+            </div>
             <div class="card">
                 <div class="card-header bg-dark text-white">
                 <i class="fa fa-home" aria-hidden="true"></i> Recamara Suit <b>H-{{$room->id}}</b>
@@ -121,41 +125,60 @@
                             </div>
                         </div>
                           
-
-                        {{-- {!! Form::select('typeroom_id', $tipohabitaciones, null, ['class' => 'form-control']) !!} --}}
                     </div>
                     <div class="form-group col-md-6">
                         <label>Fecha entrada:</label>
                         <input type="datetime-local" class="form-control">
-                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
                     </div>
                     <div class="form-group col-md-6">
                         <label>Fecha salida:</label>
                         <input type="datetime-local" class="form-control">
-                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Adultos:</label>
                         <input type="number" class="form-control">
-                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
                     </div>
                     <div class="form-group col-md-6">
                         <label>Niños:</label>
                         <input type="number" class="form-control">
-                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
                     </div>
 
                     <div class="form-group col-md-6">
                         <label>Dias:</label>
                         <input type="number" class="form-control">
-                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
                     </div>
                     <div class="form-group col-md-6">
                         <label>SubTotal:</label>
                         <input type="number" readonly class="form-control">
-                        {{-- {!! Form::number('capacidad', null, ['class' => 'form-control']) !!} --}}
                     </div>
+                    <div class="form-group col-md-6">
+                        <label>IVA:</label>
+                        <select class="custom-select">
+                            <option selected>Seleccionar IVA</option>
+                            @foreach ($impuestos as $impuesto)
+                                <option value="{{$impuesto->id}}">{{$impuesto->porcentaje}}%</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Promocion:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>Tipo de Registro:</label>
+                        <select class="custom-select">
+                            <option selected>Seleccionar tipo registro</option>
+                                <option value="Reservar">Reservar</option>
+                                <option value="Hospedar">Hospedar</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label>Total:</label>
+                        <input type="text" readonly class="form-control">
+                    </div>
+
                 </div>
 
 

@@ -150,11 +150,15 @@ class OrderproductController extends Controller
         Orderproductdetail::where('orderproduct_id', $request->orden)->delete();
 
         Orderproduct::find($request->orden)->delete();
-        return redirect()->route('orderproduct')->with('info', 'Se cancelo la orden correctamente');
+        return redirect()->route('orderproduct')->with('del', 'Se cancelo la orden correctamente');
     }
 
-    public function cobrar()
+    public function cobrar(Orderproduct $orderproduct, Request $request)
     {
-        return view('products.cobrar');
+        $orderproduct->update([
+            'total' => $request->total_suma
+        ]);
+
+        return redirect()->route('orderproduct')->with('info', 'Se confirmo tu compra');
     }
 }

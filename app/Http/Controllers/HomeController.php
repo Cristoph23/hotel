@@ -27,7 +27,9 @@ class HomeController extends Controller
     {
         $habitaciones = Room::all();
         $habitaciones_o = Room::where('status_r', 'Ocupado')->get();
-        return view('welcome', compact('habitaciones_o', 'habitaciones')); 
+        $habitaciones_d = Room::where('status_r', 'Desocupado')->get();
+
+        return view('welcome', compact('habitaciones_o', 'habitaciones', 'habitaciones_d')); 
     }
 
     public function configuraciones()

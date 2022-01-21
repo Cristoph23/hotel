@@ -53,10 +53,10 @@
       <div class="row">
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+          <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
             <div class="card-body">
-              <h3 class="card-title"><b>{{$habitaciones->count()}}</b></h3>
-              <p class="card-text">Habitaciones</p>
+              <h3 class="card-title"><b>{{$habitaciones_o->count()}}</b></h3>
+              <p class="card-text">Habitaciones Ocupadas</p>
             </div>
             <div class="card-footer text-center">
               Mas informacion <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
@@ -69,8 +69,8 @@
           <!-- small box -->
           <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
             <div class="card-body">
-              <h3 class="card-title"><b>150</b></h3>
-              <p class="card-text">Habitaciones</p>
+              <h3 class="card-title"><b>{{$habitaciones_d->count()}}</b></h3>
+              <p class="card-text">Habitaciones Desocupadas</p>
             </div>
             <div class="card-footer text-center">
               Mas informacion <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
@@ -81,10 +81,10 @@
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="card text-white bg-warning mb-3" style="max-width: 18rem;">
+          <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
             <div class="card-body">
-              <h3 class="card-title"><b>150</b></h3>
-              <p class="card-text">Habitaciones</p>
+              <h3 class="card-title"><b>1</b></h3>
+              <p class="card-text">Habitaciones en Servicio</p>
             </div>
             <div class="card-footer text-center">
               Mas informacion <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>
@@ -95,10 +95,10 @@
         <!-- ./col -->
         <div class="col-lg-3 col-6">
           <!-- small box -->
-          <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+          <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
             <div class="card-body">
-              <h3 class="card-title"><b>150</b></h3>
-              <p class="card-text">Habitaciones</p>
+              <h3 class="card-title"><b>1</b></h3>
+              <p class="card-text">Habitaciones sin funcionar</p>
             </div>
             <div class="card-footer text-center">
               Mas informacion <i class="fa fa-arrow-circle-right" aria-hidden="true"></i>

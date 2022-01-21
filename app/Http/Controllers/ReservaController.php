@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reserva;
 use App\Http\Requests\StoreReservaRequest;
 use App\Http\Requests\UpdateReservaRequest;
+use App\Models\Impuesto;
 use App\Models\Pago;
 use App\Models\Room;
 use App\Models\Typeroom;
@@ -32,7 +33,8 @@ class ReservaController extends Controller
 
     public function create(Room $room)
     {
-        return view('reservas.reservar', compact('room'));
+        $impuestos = Impuesto::all();
+        return view('reservas.reservar', compact('room', 'impuestos'));
     }
 
    

@@ -26,6 +26,7 @@
                   <i class="fa fa-user" aria-hidden="true"></i> {{auth()->user()->name}}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <a class="dropdown-item" href="{{ route('promotion') }}"><i class="fa fa-money" aria-hidden="true"></i> Promociones</a>
                   <a class="dropdown-item" href="{{ route('configuraciones') }}"><i class="fa fa-cog" aria-hidden="true"></i> Configuraciones</a>
                   <a class="dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
