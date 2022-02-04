@@ -4,6 +4,8 @@ use App\Http\Controllers\OrderproductController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/product/dashboard', [ProductController::class, 'dashboard'])->name('product.dashboard');
 Route::get('/product', [ProductController::class, 'index'])->name('product');
 Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
 Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
@@ -21,8 +23,14 @@ Route::delete('/orderproduct/limpiarcarrito', [OrderproductController::class, 'l
 Route::delete('/orderproduct/cancelar', [OrderproductController::class, 'cancelar'])->name('orderproduct.cancelar');
 
 
-
 Route::get('/product/alertastock', [ProductController::class, 'stock'])->name('product.stock');
+Route::get('/product/alertastock/agregar/{product}', [ProductController::class, 'agregarstock'])->name('product.agregarstock');
+
+Route::get('/product/reportes', [ProductController::class, 'reportes'])->name('product.reporte');
+
+Route::get('/product/ventas', [ProductController::class, 'ventas'])->name('product.venta');
+
+
 
 
 

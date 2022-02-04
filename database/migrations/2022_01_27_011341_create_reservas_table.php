@@ -20,7 +20,7 @@ class CreateReservasTable extends Migration
             $table->unsignedBigInteger('room_id');
 
             $table->dateTime("start");
-            $table->dateTime("end", );
+            $table->dateTime("end");
 
             $table->decimal("total",8,2)->nullable();
             $table->integer("dias");

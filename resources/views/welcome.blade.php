@@ -169,10 +169,10 @@
                             </div>
 
                             <div class="col">
-                                <a href="#" style="text-decoration: none;">
+                                <a href="{{ route('checkout') }}" style="text-decoration: none;">
                                 <div class="atajo text-center">
-                                    <span><i class="fa fa-user" aria-hidden="true"></i></span>
-                                    <p>Empleados</p>
+                                    <span><i class="fa fa-times-rectangle" aria-hidden="true"></i></span>
+                                    <p>Check-Out</p>
                                 </div>
                                 </a>
                             </div>

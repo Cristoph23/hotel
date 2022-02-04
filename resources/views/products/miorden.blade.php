@@ -43,7 +43,8 @@
                                 </ul>
 
                                 <p class="card-text"><small class="text-muted">Llego:
-                                        {{ date('d-m-Y', strtotime($reserva->start)) }}</small></p>
+                                        {{ date('d-m-Y', strtotime($reserva->start)) }}
+                                    </small></p>
 
                             </div>
                         </div>

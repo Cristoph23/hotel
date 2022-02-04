@@ -84,7 +84,7 @@
                     <span><i class="fa fa-shopping-bag" aria-hidden="true"></i></span>
                     <a class="nav-link dropdown-toggle" href="#" id="submenuprod" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
                     <div class="dropdown-menu" aria-labelledby="submenuprod">
-                        
+                        <a class="dropdown-item" href="{{ route('product.dashboard') }}">Dashboard</a>
                         <a class="dropdown-item" href="{{ route('orderproduct') }}">Crear pedido</a>
                         <a class="dropdown-item" href="{{ route('product') }}">Agregar productos</a>
                         <a class="dropdown-item" href="{{ route('product.stock') }}">Alerta Stock</a>

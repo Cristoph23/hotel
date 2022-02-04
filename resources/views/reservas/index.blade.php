@@ -48,8 +48,8 @@
                             </a>
                         </div>
                     </div>
-                @else
-                    @if ($room->status_r == 'Desocupado')
+                @endif
+                 @if ($room->status_r == 'Desocupado')
                         <div class="col-md-3">
                             <div class="wrimagecard wrimagecard-topimage">
                                 <a href="{{ route('reserva.create', $room) }}">
@@ -72,8 +72,6 @@
                             </div>
                         </div>
                     @endif
-                @endif
-
             @endforeach
 
         </div>

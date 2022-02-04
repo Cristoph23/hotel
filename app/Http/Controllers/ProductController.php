@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
+use App\Models\Orderproduct;
 use App\Models\Product;
 use App\Models\Provider;
 use Illuminate\Http\Request;
@@ -61,23 +63,26 @@ class ProductController extends Controller
         return view('products.stock', compact('products'));
     }
 
-    public function show(Product $product)
+    public function dashboard()
     {
-        //
+        $products = Product::count();
+        $stock = Product::where('stock', '<=', 'stock_min')->count();
+        return view('products.dashboard', compact('products', 'stock'));
     }
 
-    public function edit(Product $product)
+    public function reportes()
     {
-        //
+        return view('products.reportes');
     }
 
-    public function update()
+    public function agregarstock(Product $product)
     {
-        //
+        return view('products.agregarstock', compact('product'));
     }
 
-    public function destroy(Product $product)
+    public function ventas()
     {
-        //
+        $orders = Orderproduct::all();
+        return view('products.ventas', compact('orders'));
     }
 }
